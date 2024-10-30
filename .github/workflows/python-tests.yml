@@ -24,7 +24,7 @@ jobs:
           pip install pytest
           pip install pyyaml
           pip install requests
-          pip install unittest.mock
+          
       - name: Test with pytest
         run: |
           pytest
