@@ -15,9 +15,13 @@ def compute_overlap_time(range1, range2):
     overlap_time = []
     for start1, end1 in range1:
         for start2, end2 in range2:
-            low = max(start1, start2)
-            high = min(end1, end2)
-            overlap_time.append((low, high))
+            # both ranges need to start before the other ends, otherwise there is no overlap. These if statements also prevent the weird reversed overlap bug uncovered by the tests.
+            if start1 <= end2 and start2 <= end1: 
+                low = max(start1, start2)
+                high = min(end1, end2)
+                if high == low:
+                    continue
+                overlap_time.append((low, high))
     return overlap_time
 
 if __name__ == "__main__":
